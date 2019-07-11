@@ -113,7 +113,7 @@ def render_template_file(template, context=None):
 def url_replace_param(url, name, value):
     """Replace a GET parameter in an URL."""
     url_components = urlparse(force_str(url))
-    query_params = parse_qs(url_components.query)
+    query_params = parse_qs(url_components.query, keep_blank_values=True)
     query_params[name] = value
     query = urlencode(query_params, doseq=True)
     return force_str(
